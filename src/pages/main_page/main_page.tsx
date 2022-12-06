@@ -1,32 +1,21 @@
-import Box from '@mui/material/Box';
 import React from 'react'
 import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
-import { Col } from 'react-bootstrap';
-import { SearchInputComponent } from './components/search_input_component';
+import { Grid } from '@mui/material';
+import { SearchInputComponent } from '../components/search_input_component';
+import { CharacterCardComponent } from '../components/character_card_component';
 
 
 
 const useStyles = makeStyles((theme: Theme) => ({
     search: {
         backgroundColor: "#ffffff",
-        width: '100%',
         height: 'calc(20%)',
-        paddingBottom: '10px',
     },
     result: {
-        backgroundColor: "#313D3E",
-        width: 'calc(100%)',
+        backgroundColor: "rgb(32, 35, 41)",
         height: 'calc(80%)',
-        minHeight: 'calc(80%)',
-    },
-    h1: {
-        padding: '0 0px 0px 0px',
-        color: "#000000",
-        fontSize: '50px',
-        textAlign: 'center',
-        marginTop: 'auto',
-        marginBottom: 'auto',
+        padding: '10px 10px 10px 10px',
     },
 }));
 
@@ -34,13 +23,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const MainPage: React.FC = () => {
     const classes = useStyles()
     return (
-        <Col style={{height: 'calc(%100)'}}>
-            <Box className={classes.search}>
-                <SearchInputComponent></SearchInputComponent>
-            </Box>
-            <Box className={classes.result}>
-                <h1 className={classes.h1}>Result side</h1>
-            </Box>
-        </Col>
+        <Grid item height={window.innerHeight}>
+            <Grid className={classes.search}>
+                <SearchInputComponent />
+            </Grid>
+                <Grid container rowSpacing={2} columnSpacing={2} columns={{ xs: 4, sm: 8, md: 12, lg:8 }} className={classes.result}>
+                    {Array.from(Array(6)).map((_, index) => (
+                        <Grid item xs={2} sm={4} md={4} lg={4} key={index}>
+                            <CharacterCardComponent />
+                        </Grid>
+                    ))}
+            </Grid>
+        </Grid>
     );
 }

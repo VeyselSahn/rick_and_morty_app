@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import { Theme } from '@mui/material/styles';
-import { Col } from "react-bootstrap";
+import { Grid } from '@mui/material';
 
 
 
@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         display: 'block',
         marginRight: 'auto',
         marginLeft: 'auto',
+        alignItems: 'center',
     },
     title:{
         textAlign: 'center',
@@ -21,9 +22,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const SearchInputComponent: React.FC = () => {
     const classes = useStyles()
     return (
-        <Col>
+        <Grid>
             <h1 className={classes.title}>The Rick And Morty App</h1>
             <input type="text" className={classes.search} placeholder='Search character' />
-        </Col>
+        </Grid>
     );
 }
